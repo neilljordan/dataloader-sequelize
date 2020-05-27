@@ -138,7 +138,7 @@ function loaderForBTM(model, joinTableName, foreignKey, foreignKeyField, options
       }];
     }
 
-    return model.findAll(findOptions).then(mapResult.bind(null, attributes, keys, findOptions));
+    return model.unscoped().findAll(findOptions).then(mapResult.bind(null, attributes, keys, findOptions));
   }, {
     cache: options.cache
   });
@@ -166,7 +166,7 @@ function loaderForModel(model, attribute, attributeField, options = {}) {
       }, findOptions.where);
     }
 
-    return model.findAll(findOptions).then(mapResult.bind(null, attribute, keys, options));
+    return model.unscoped().findAll(findOptions).then(mapResult.bind(null, attribute, keys, options));
   }, {
     cache: options.cache
   });
@@ -460,7 +460,7 @@ export function removeContext(sequelize) {
 
 function createModelAttributeLoader(Model, attribute, options = {}) {
   return new DataLoader(keys => {
-    return Model.findAll({
+    return Model.unscoped().findAll({
       ...options,
       where: {
         [attribute]: keys

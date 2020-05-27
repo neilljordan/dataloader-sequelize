@@ -1,5 +1,5 @@
 {
-  "name": "dataloader-sequelize",
+  "name": "@glamsquad/dataloader-sequelize",
   "version": "2.1.2",
   "description": "Batching and simplification of Sequelize with facebook/dataloader",
   "main": "lib/index.js",
